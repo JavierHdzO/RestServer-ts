@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Op } from "sequelize";
 import User from '../models/user';
 
+
 export const getUsers = async( req: Request, res: Response ) =>{
 
     try {
@@ -66,7 +67,7 @@ export const getUser = async( req: Request, res: Response ) =>{
 
 export const createUser = async ( req: Request, res: Response ) =>{
 
-    const { name, email } = req.body;
+    const { name, email, password } = req.body;
 
     try {
 
@@ -86,6 +87,7 @@ export const createUser = async ( req: Request, res: Response ) =>{
         const user = User.build({
             name,
             email,
+            password,
             status: true
         });
 

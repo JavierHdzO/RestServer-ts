@@ -2,6 +2,7 @@ import path from 'path';
 import express, { Application } from 'express';
 import cors from 'cors';
 import UserRoutes from '../routes/users.routes';
+import AuthRoutes from '../routes/auth.routes';
 import sequelize from '../database';
 
 class Server{
@@ -9,6 +10,7 @@ class Server{
     private app: Application;
     private port: Number;
     private paths = {
+        auth: '/api/auth',
         users: '/api/users'
     }
     
@@ -45,6 +47,7 @@ class Server{
     }
 
     routes(){
+        this.app.use(this.paths.auth, AuthRoutes );
         this.app.use(this.paths.users, UserRoutes );
     }
 
